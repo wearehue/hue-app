@@ -1,0 +1,29 @@
+.App {
+  background-color: #261b19;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url(./fonts/Montserrat-Regular.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "zenon";
+  src: local("zenon"), url(./fonts/CAST\ -\ Zenon\ Black.otf) format("opentype");
+}
+
+ul {
+  color: white;
+}
+
+.hamburger-react > div {
+  height: 1px !important;
+}
+
+@media (max-width: 320px) {
+  .bm-menu {
+    font-size: 1.7em !important;
+    padding: 5.7em 0.5em 0px !important;
+  }
+}
