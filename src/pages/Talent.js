@@ -63,6 +63,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
     setInitialRecords(allRecords);
     setRecords(allRecords.slice(0, perPage));
   };
+
   useEffect(() => {
     base("Amplify POC Talent Gallery: Live")
       .select({
@@ -73,6 +74,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
         view: "Grid view",
       })
       .eachPage(processPage, processRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -84,6 +86,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
@@ -96,6 +99,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
     );
 
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expertiseValue]);
 
   useEffect(() => {
@@ -107,6 +111,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceValue]);
 
   return (

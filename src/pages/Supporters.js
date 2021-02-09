@@ -73,6 +73,7 @@ function Supporters({ base, experienceOptions, expertiseOptions }) {
         view: "Grid view",
       })
       .eachPage(processPage, processRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -84,6 +85,7 @@ function Supporters({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
@@ -96,6 +98,7 @@ function Supporters({ base, experienceOptions, expertiseOptions }) {
     );
 
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expertiseValue]);
 
   useEffect(() => {
@@ -107,6 +110,7 @@ function Supporters({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceValue]);
 
   return (
