@@ -1,7 +1,5 @@
 import React from "react";
-import Nav from "./Nav";
-import { Link as ReactLink } from "react-router-dom";
-import { Box, Heading, Text, Icon, Flex, Tag, Link } from "@chakra-ui/react";
+import { Icon, Flex, Link } from "@chakra-ui/react";
 import { FaLinkedinIn, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Footer({ type }) {
