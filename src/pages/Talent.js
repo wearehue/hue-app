@@ -13,25 +13,28 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
   const [experienceValue, setExperienceValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  const perPage = 9;
+  const perPage = 10;
   const [lastScrollPosition, setLastScrollPosition] = useState(perPage);
 
   const loadCards = () => {
-    setTimeout(() => {
-      setRecords((currentRecords) => {
-        return [
-          ...currentRecords,
-          ...initialRecords.slice(
-            lastScrollPosition,
-            lastScrollPosition + perPage
-          ),
-        ];
-      });
-    }, 1000);
+    if (records.length) {
+      setTimeout(() => {
+        setRecords((currentRecords) => {
+          return [
+            ...currentRecords,
+            ...initialRecords.slice(
+              lastScrollPosition,
+              lastScrollPosition + perPage
+            ),
+          ];
+        });
+      }, 1000);
 
-    setLastScrollPosition((currentValue) => {
-      return currentValue + perPage;
-    });
+      setLastScrollPosition((currentValue) => {
+        return currentValue + perPage;
+      });
+    }
+    console.log("load cards called");
   };
 
   const handleSearchChange = (event) => {
@@ -111,6 +114,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
+    console.log("filtered records set");
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceValue]);
 

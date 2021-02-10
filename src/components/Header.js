@@ -34,13 +34,18 @@ function Header({ type, logoSize }) {
         ml={8}
         pt={[40, 40, 60, 200, 200]}
       >
-        <Heading as="h1" size="2xl" mb={6} color="brand.blush">
+        <Heading
+          as="h1"
+          size="xl"
+          mb={6}
+          color="brand.blush"
+          textAlign="center"
+        >
           {title}
         </Heading>
         <Text
-          fontSize="xl"
+          fontSize="lg"
           fontWeight="700"
-          mb={4}
           p={[4, 4, 2, 2]}
           color="brand.blush"
           textAlign="center"
@@ -48,9 +53,8 @@ function Header({ type, logoSize }) {
           {subtitle}
         </Text>
         <Text
-          fontSize="lg"
+          fontSize="md"
           color="brand.blush"
-          mb={4}
           p={[4, 4, 2, 2]}
           textAlign="center"
         >

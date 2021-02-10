@@ -191,6 +191,7 @@ export const filterByExperience = (
         expertiseString.toLowerCase().indexOf(expertiseValue.toLowerCase()) >
           -1;
     } else {
+      console.log(experienceValue, filterCondition);
       filterCondition =
         experienceString.toLowerCase().indexOf(experienceValue.toLowerCase()) >
         -1;

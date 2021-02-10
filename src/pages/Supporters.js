@@ -13,7 +13,7 @@ function Supporters({ base, experienceOptions, expertiseOptions }) {
   const [experienceValue, setExperienceValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  const perPage = 9;
+  const perPage = 10;
   const [lastScrollPosition, setLastScrollPosition] = useState(perPage);
 
   const loadCards = () => {

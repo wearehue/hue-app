@@ -31,7 +31,7 @@ function Card({ record, index, type }) {
       </Heading>
       <Flex align="start" mb={4}>
         <Icon as={FaStar} boxSize={6} mr={4} />
-        <Text fontSize={["md", "md", "lg", "lg"]}>
+        <Text fontSize={["md", "md", "md", "md"]}>
           {record.fields["Short Bio"]}
         </Text>
       </Flex>
@@ -48,7 +48,13 @@ function Card({ record, index, type }) {
         </Text>
         {record.fields["Expertise"].map((expertise) => {
           return (
-            <Tag m={2} key={expertise} bg="brand.blush" color="brand.raisin">
+            <Tag
+              size="sm"
+              m={2}
+              key={expertise}
+              bg="brand.blush"
+              color="brand.raisin"
+            >
               {expertise}
             </Tag>
           );
@@ -67,7 +73,7 @@ function Card({ record, index, type }) {
             >
               Years of Experience
             </Text>
-            <Text fontSize={["md", "md", "lg", "lg"]}>
+            <Text fontSize={["md", "md", "md", "md"]}>
               {record.fields["Years of Experience"]}
             </Text>
           </Box>
@@ -85,7 +91,7 @@ function Card({ record, index, type }) {
             >
               Years of Marketing Experience
             </Text>
-            <Text fontSize={["md", "md", "lg", "lg"]}>
+            <Text fontSize={["md", "md", "md", "md"]}>
               {record.fields["Years of Marketing Experience"]}
             </Text>
           </Box>
@@ -102,7 +108,7 @@ function Card({ record, index, type }) {
         >
           Where I've Worked
         </Text>
-        <Text fontSize={["md", "md", "lg", "lg"]}>
+        <Text fontSize={["md", "md", "md", "md"]}>
           {record.fields["Where I've Worked"]}
         </Text>
       </Box>
@@ -140,7 +146,13 @@ function Card({ record, index, type }) {
           </Text>
           {record.fields["How I'd Like to Help"].map((help) => {
             return (
-              <Tag m={2} key={help} bg="brand.blush" color="brand.raisin">
+              <Tag
+                size="sm"
+                m={2}
+                key={help}
+                bg="brand.blush"
+                color="brand.raisin"
+              >
                 {help}
               </Tag>
             );

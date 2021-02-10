@@ -100,14 +100,14 @@ function App() {
     "2-5",
   ];
 
-  const trackingId = "UA-1234567890-1";
+  const trackingId = "UA-172908475-1";
   ReactGA.initialize(trackingId);
 
   const history = createBrowserHistory();
 
   history.listen((location) => {
-    ReactGA.set({ page: location.pathname }); // Update the user's current page
-    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
   });
 
   return (
@@ -118,7 +118,7 @@ function App() {
             <Auth>
               <Header
                 type="talent"
-                logoSize={["3.5rem", "3.5rem", 20, 90, 100]}
+                logoSize={["3.5rem", "3.5rem", "3.5rem", "5rem", "5.5rem"]}
               />
               <Talent
                 base={base}
@@ -132,7 +132,7 @@ function App() {
             <Auth>
               <Header
                 type="supporters"
-                logoSize={["3.5rem", "3.5rem", 20, 90, 100]}
+                logoSize={["3.5rem", "3.5rem", "3.5rem", "5rem", "5.5rem"]}
               />
               <Supporters
                 base={base}

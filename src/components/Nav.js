@@ -12,7 +12,7 @@ function Nav({ type, logoSize }) {
       {type !== "auth" && (
         <Flex
           color="brand.blush"
-          fontSize={["sm", "sm", "sm", "xl"]}
+          fontSize={["sm", "sm", "sm", "lg"]}
           display={["none", "none", "flex", "flex"]}
         >
           <Link
