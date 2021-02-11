@@ -38,6 +38,10 @@ export const search = (
             ${experienceString}
             ${helpString}`;
 
+    console.log(
+      searchString.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+    );
+
     if (expertiseFilter && !experienceFilter) {
       filterCondition =
         searchString.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 &&
@@ -198,4 +202,57 @@ export const filterByExperience = (
     }
     return filterCondition;
   });
+};
+
+export const filterNewRecords = (
+  type,
+  records,
+  expertiseValue,
+  searchValue,
+  experienceValue
+) => {
+  // if(expertiseValue && experienceValue && searchValue){
+  //   //filter by all three
+  //   search(type, records, expertiseValue, searchValue, experienceValue)
+  // } else if(expertiseValue && experienceValue && !searchValue){
+  //   //filter by expertise and experience
+  // } else if(expertiseValue && !experienceValue && searchValue){
+  //   //filter by expertise and search
+  // } else if (expertiseValue && !experienceValue && !searchValue){
+  //   //filter by expertise only
+  //   return filterByExpertise(type, records, expertiseValue, searchValue, experienceValue)
+  // } else if(!expertiseValue && experienceValue && searchValue){
+  //   //filter by experience and search
+  // } else if(!expertiseValue && experienceValue && !searchValue){
+  //   //filter by experience only
+  //   return filterByExperience(type, records, expertiseValue, searchValue, experienceValue)
+  // } else if(!expertiseValue && !experienceValue && searchValue){
+  //   //filter by search only
+  //   return search(type, records, expertiseValue, searchValue, experienceValue)
+  // }
+
+  if (expertiseValue && !experienceValue && !searchValue) {
+    //filter by expertise only
+    return filterByExpertise(
+      type,
+      records,
+      expertiseValue,
+      searchValue,
+      experienceValue
+    );
+  } else if (!expertiseValue && experienceValue && !searchValue) {
+    //filter by experience only
+    return filterByExperience(
+      type,
+      records,
+      expertiseValue,
+      searchValue,
+      experienceValue
+    );
+  } else if (!expertiseValue && !experienceValue && searchValue) {
+    //filter by search only
+    return search(type, records, expertiseValue, searchValue, experienceValue);
+  } else {
+    return search(type, records, expertiseValue, searchValue, experienceValue);
+  }
 };

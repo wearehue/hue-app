@@ -34,9 +34,6 @@ function App() {
     "Partnerships & business development",
     "Project management",
     "Art Direction / graphic design",
-    "Diversity",
-    "equity",
-    "inclusion",
   ];
 
   const talentExperienceOptions = [
@@ -44,7 +41,6 @@ function App() {
     "5-7",
     "7-10",
     "10+",
-    "Option One",
     "1-2",
     "N/A - I work in a different business area",
   ];
@@ -65,12 +61,8 @@ function App() {
     "Events & sponsorships",
     "Recruiting / hiring",
     "Diversity, equity, inclusion",
-    "Option One",
-    "Option Two",
     "Art Direction / graphic design",
     "Diversity",
-    "equity",
-    "inclusion",
     "N/A - I'm a CEO / GM / MD",
     "UX design",
     "Search engine marketing & optimization",
@@ -88,10 +80,7 @@ function App() {
     "N/A - I work in recruiting / hiring",
     "N/A - I work in diversity, equity, inclusion",
     "N/A - I work in a different business area",
-    "Option One",
     "N/A - I work in diversity",
-    "equity",
-    "inclusion",
     "N/A - I'm a CEO / GM / MD",
     "Brand strategy & identity",
     "Growth marketing",

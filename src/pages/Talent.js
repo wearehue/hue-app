@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Box, Flex, Input, Select } from "@chakra-ui/react";
 import Card from "../components/Card";
-import { filterByExperience, filterByExpertise, search } from "../utils/filter";
+import {
+  filterByExperience,
+  filterByExpertise,
+  search,
+  filterNewRecords,
+} from "../utils/filter";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function Talent({ base, experienceOptions, expertiseOptions }) {
@@ -20,13 +25,20 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
     if (records.length) {
       setTimeout(() => {
         setRecords((currentRecords) => {
-          return [
+          const nextRecords = [
             ...currentRecords,
             ...initialRecords.slice(
               lastScrollPosition,
               lastScrollPosition + perPage
             ),
           ];
+          return filterNewRecords(
+            "talent",
+            nextRecords,
+            expertiseValue,
+            searchValue,
+            experienceValue
+          );
         });
       }, 1000);
 
