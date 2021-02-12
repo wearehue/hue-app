@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, Text, Icon, Link, Flex, Tag } from "@chakra-ui/react";
-import { FaLinkedinIn, FaStar } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 
 function Card({ record, index, type }) {
   return (
@@ -8,9 +8,10 @@ function Card({ record, index, type }) {
       bg="brand.raisin"
       borderRadius="20px"
       boxShadow="lg"
-      w={["100%", "100%", "48%", "48%", "48%"]}
+      w={["100%", "100%", "47%", "48%", "48%"]}
       p={8}
       mb={10}
+      mr="1rem"
       color="brand.blush"
       key={record.id}
       borderWidth=".125rem"
@@ -30,7 +31,6 @@ function Card({ record, index, type }) {
         {record.fields["Name"]}
       </Heading>
       <Flex align="start" mb={4}>
-        <Icon as={FaStar} boxSize={6} mr={4} />
         <Text fontSize={["md", "md", "md", "md"]}>
           {record.fields["Short Bio"]}
         </Text>

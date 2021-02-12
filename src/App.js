@@ -14,81 +14,6 @@ const base = new Airtable({ apiKey: "keyaU6R8fXqJODoNZ" }).base(
 );
 
 function App() {
-  const talentExpertiseOptions = [
-    "Brand strategy & identity",
-    "Product marketing",
-    "Growth marketing",
-    "Content marketing",
-    "PR & Influencer",
-    "CRM / Lifecycle marketing",
-    "General management / business strategy",
-    "Consumer / customer insights & analytics",
-    "Art direction / graphic design",
-    "Copywriting",
-    "Innovation",
-    "Partnerships",
-    "Events & sponsorships",
-    "UX design",
-    "Search engine marketing & optimization",
-    "Comms & media strategy",
-    "Partnerships & business development",
-    "Project management",
-    "Art Direction / graphic design",
-  ];
-
-  const talentExperienceOptions = [
-    "2-5",
-    "5-7",
-    "7-10",
-    "10+",
-    "1-2",
-    "N/A - I work in a different business area",
-  ];
-
-  const supportersExpertiseOptions = [
-    "Brand strategy & identity",
-    "Product marketing",
-    "Growth marketing",
-    "Content marketing",
-    "PR & Influencer",
-    "CRM / Lifecycle marketing",
-    "General management / business strategy",
-    "Consumer / customer insights & analytics",
-    "Art direction / graphic design",
-    "Copywriting",
-    "Innovation",
-    "Partnerships",
-    "Events & sponsorships",
-    "Recruiting / hiring",
-    "Diversity, equity, inclusion",
-    "Art Direction / graphic design",
-    "Diversity",
-    "N/A - I'm a CEO / GM / MD",
-    "UX design",
-    "Search engine marketing & optimization",
-    "Comms & media strategy",
-    "White",
-    "Partnerships & business development",
-    "Project management",
-  ];
-
-  const supportersExperienceOptions = [
-    "5-7",
-    "7-10",
-    "10-12",
-    "12+",
-    "N/A - I work in recruiting / hiring",
-    "N/A - I work in diversity, equity, inclusion",
-    "N/A - I work in a different business area",
-    "N/A - I work in diversity",
-    "N/A - I'm a CEO / GM / MD",
-    "Brand strategy & identity",
-    "Growth marketing",
-    "Content marketing",
-    "Innovation",
-    "2-5",
-  ];
-
   const trackingId = "UA-172908475-1";
   ReactGA.initialize(trackingId);
 
@@ -109,11 +34,7 @@ function App() {
                 type="talent"
                 logoSize={["3.5rem", "3.5rem", "3.5rem", "5rem", "5.5rem"]}
               />
-              <Talent
-                base={base}
-                experienceOptions={talentExperienceOptions}
-                expertiseOptions={talentExpertiseOptions}
-              />
+              <Talent base={base} title="Talent of Color Gallery — hue" />
               <Footer />
             </Auth>
           </Route>
@@ -123,11 +44,7 @@ function App() {
                 type="supporters"
                 logoSize={["3.5rem", "3.5rem", "3.5rem", "5rem", "5.5rem"]}
               />
-              <Supporters
-                base={base}
-                experienceOptions={supportersExperienceOptions}
-                expertiseOptions={supportersExpertiseOptions}
-              />
+              <Supporters base={base} title="Supporter Gallery — hue" />
               <Footer />
             </Auth>
           </Route>

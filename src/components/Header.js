@@ -8,7 +8,7 @@ function Header({ type, logoSize }) {
   const linkText =
     type === "talent"
       ? "View the supporter gallery"
-      : "View the talent gallery";
+      : "View the talent of color gallery";
   const title = type === "talent" ? "talent gallery" : "supporter gallery";
   const subtitle =
     type === "talent"
@@ -78,7 +78,7 @@ function Header({ type, logoSize }) {
             color="brand.ginger"
             textDecoration="underline"
           >
-            View the job board
+            View jobs
           </Link>
         </Flex>
       </Flex>

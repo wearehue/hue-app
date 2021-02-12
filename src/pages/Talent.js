@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box, Flex, Input, Select } from "@chakra-ui/react";
 import Card from "../components/Card";
-import {
-  filterByExperience,
-  filterByExpertise,
-  search,
-  filterNewRecords,
-} from "../utils/filter";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { filterByExperience, filterByExpertise, search } from "../utils/filter";
 
-function Talent({ base, experienceOptions, expertiseOptions }) {
+function Talent({ base, title }) {
   const allRecords = [];
   const [records, setRecords] = useState([]);
   const [initialRecords, setInitialRecords] = useState([]);
@@ -18,54 +12,28 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
   const [experienceValue, setExperienceValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  const perPage = 10;
-  const [lastScrollPosition, setLastScrollPosition] = useState(perPage);
-
-  const loadCards = () => {
-    if (records.length) {
-      setTimeout(() => {
-        setRecords((currentRecords) => {
-          const nextRecords = [
-            ...currentRecords,
-            ...initialRecords.slice(
-              lastScrollPosition,
-              lastScrollPosition + perPage
-            ),
-          ];
-          return filterNewRecords(
-            "talent",
-            nextRecords,
-            expertiseValue,
-            searchValue,
-            experienceValue
-          );
-        });
-      }, 1000);
-
-      setLastScrollPosition((currentValue) => {
-        return currentValue + perPage;
-      });
-    }
-    console.log("load cards called");
-  };
+  const [experienceOptions, setExperienceOptions] = useState([]);
+  const [expertiseOptions, setExpertiseOptions] = useState([]);
 
   const handleSearchChange = (event) => {
-    setRecords(initialRecords.slice(0, lastScrollPosition));
+    setRecords(initialRecords);
     setSearchValue(event.target.value);
   };
 
   const handleExperienceChange = (event) => {
-    setRecords(initialRecords.slice(0, lastScrollPosition));
+    setRecords(initialRecords);
     setExperienceValue(event.target.value);
   };
 
   const handleExpertiseChange = (event) => {
-    setRecords(initialRecords.slice(0, lastScrollPosition));
+    setRecords(initialRecords);
     setExpertiseValue(event.target.value);
   };
-
+  let firstPage = null;
   const processPage = (nextRecords, fetchNextPage) => {
     allRecords.push(...nextRecords);
+    if (!firstPage) setRecords(nextRecords);
+    firstPage = true;
     fetchNextPage();
   };
 
@@ -74,9 +42,38 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
       console.error(err);
       return;
     }
-
+    setRecords(allRecords);
     setInitialRecords(allRecords);
-    setRecords(allRecords.slice(0, perPage));
+
+    const expertiseSet = new Set();
+    allRecords.forEach((record) => {
+      record.fields["Expertise"].forEach((expertise) => {
+        expertiseSet.add(expertise);
+      });
+    });
+    setExpertiseOptions(Array.from(expertiseSet));
+
+    const experienceSet = new Set();
+    allRecords.forEach((record) => {
+      record.fields["Years of Experience"].forEach((experience) => {
+        experienceSet.add(experience);
+      });
+    });
+    // eslint-disable-next-line array-callback-return
+    const experienceArray = Array.from(experienceSet).sort((a, b) => {
+      if (a.length < 6 && b.length < 6) {
+        const numA = Number.parseInt(a);
+        const numB = Number.parseInt(b);
+        return numB - numA;
+      }
+      if (a.length > 6) {
+        return 1;
+      }
+      if (b.length > 6) {
+        return -1;
+      }
+    });
+    setExperienceOptions(experienceArray);
   };
 
   useEffect(() => {
@@ -89,6 +86,7 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
         view: "Grid view",
       })
       .eachPage(processPage, processRecords);
+    document.title = title || "";
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -126,7 +124,6 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
       experienceValue
     );
     setRecords(filteredRecords);
-    console.log("filtered records set");
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceValue]);
 
@@ -187,25 +184,19 @@ function Talent({ base, experienceOptions, expertiseOptions }) {
             borderColor="brand.blush"
           />
         </Flex>
-
-        <InfiniteScroll
-          dataLength={records.length}
-          next={loadCards}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
+        <Flex
+          flexWrap="wrap"
+          justify="space-between"
+          width="100%"
+          alignContent="space-between"
+          height="600px"
+          overflowY="scroll"
         >
-          <Flex
-            flexWrap="wrap"
-            justify="space-between"
-            width="100%"
-            alignContent="space-between"
-          >
-            {records &&
-              records.map((record, index) => {
-                return <Card record={record} index={index} type="Talent" />;
-              })}
-          </Flex>
-        </InfiniteScroll>
+          {records &&
+            records.map((record, index) => {
+              return <Card record={record} index={index} type="Talent" />;
+            })}
+        </Flex>
       </Flex>
     </Box>
   );
