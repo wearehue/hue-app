@@ -75,7 +75,6 @@ export const filterByExpertise = (
     const expertiseString = record.fields["Expertise"].reduce((acc, curr) => {
       return acc + " " + curr;
     }, "");
-    console.log(record.fields["Expertise"]);
     const experienceString =
       type === "talent"
         ? record.fields["Years of Experience"][0]
@@ -132,8 +131,7 @@ export const filterByExperience = (
   const searchFilter = searchValue.length > 0;
 
   let filterCondition = null;
-  console.log(experienceValue);
-  console.log({ records });
+
   return records.filter((record) => {
     const expertiseString = record.fields["Expertise"].reduce((acc, curr) => {
       return acc + " " + curr;
@@ -142,7 +140,7 @@ export const filterByExperience = (
       type === "talent"
         ? record.fields["Years of Experience"][0]
         : record.fields["Years of Marketing Experience"][0];
-    console.log(experienceString);
+
     const helpString = record.fields["How I'd Like to Help"]
       ? record.fields["How I'd Like to Help"].reduce((acc, curr) => {
           return acc + " " + curr;
@@ -182,56 +180,3 @@ export const filterByExperience = (
     return filterCondition;
   });
 };
-
-// export const filterNewRecords = (
-//   type,
-//   records,
-//   expertiseValue,
-//   searchValue,
-//   experienceValue
-// ) => {
-//   // if(expertiseValue && experienceValue && searchValue){
-//   //   //filter by all three
-//   //   search(type, records, expertiseValue, searchValue, experienceValue)
-//   // } else if(expertiseValue && experienceValue && !searchValue){
-//   //   //filter by expertise and experience
-//   // } else if(expertiseValue && !experienceValue && searchValue){
-//   //   //filter by expertise and search
-//   // } else if (expertiseValue && !experienceValue && !searchValue){
-//   //   //filter by expertise only
-//   //   return filterByExpertise(type, records, expertiseValue, searchValue, experienceValue)
-//   // } else if(!expertiseValue && experienceValue && searchValue){
-//   //   //filter by experience and search
-//   // } else if(!expertiseValue && experienceValue && !searchValue){
-//   //   //filter by experience only
-//   //   return filterByExperience(type, records, expertiseValue, searchValue, experienceValue)
-//   // } else if(!expertiseValue && !experienceValue && searchValue){
-//   //   //filter by search only
-//   //   return search(type, records, expertiseValue, searchValue, experienceValue)
-//   // }
-
-//   if (expertiseValue && !experienceValue && !searchValue) {
-//     //filter by expertise only
-//     return filterByExpertise(
-//       type,
-//       records,
-//       expertiseValue,
-//       searchValue,
-//       experienceValue
-//     );
-//   } else if (!expertiseValue && experienceValue && !searchValue) {
-//     //filter by experience only
-//     return filterByExperience(
-//       type,
-//       records,
-//       expertiseValue,
-//       searchValue,
-//       experienceValue
-//     );
-//   } else if (!expertiseValue && !experienceValue && searchValue) {
-//     //filter by search only
-//     return search(type, records, expertiseValue, searchValue, experienceValue);
-//   } else {
-//     return search(type, records, expertiseValue, searchValue, experienceValue);
-//   }
-// };

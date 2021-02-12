@@ -20,6 +20,16 @@ function Nav({ type, logoSize }) {
             _hover={{
               textDecoration: "none",
             }}
+            href="http://wearehue.org/stateofinequity"
+            isExternal
+          >
+            The Hub
+          </Link>
+          <Link
+            mr={6}
+            _hover={{
+              textDecoration: "none",
+            }}
             href="https://www.wearehue.org/talent"
             isExternal
           >

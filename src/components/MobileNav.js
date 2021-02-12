@@ -64,6 +64,9 @@ function MobileNav() {
         label="Show menu"
       />
       <Menu styles={styles} isOpen={menuIsOpen}>
+        <Link href="http://wearehue.org/stateofinequity" isExternal>
+          The Hub
+        </Link>
         <Link href="https://www.wearehue.org/talent" isExternal>
           For Talent of Color
         </Link>
