@@ -46,9 +46,9 @@ function Auth({ children }) {
               borderRadius="0px"
               borderBottom="2px solid"
               fontSize="16px"
-              color="brand.sand"
+              color="brand.sugar"
               _hover={{
-                color: "brand.sand",
+                color: "brand.sugar",
               }}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
@@ -58,7 +58,7 @@ function Auth({ children }) {
             />
             <Button
               rightIcon={<FaArrowRight />}
-              color="brand.sand"
+              color="brand.sugar"
               variant="link"
               size="lg"
               borderRadius="0px"
