@@ -47,6 +47,9 @@ function Auth({ children }) {
               borderBottom="2px solid"
               fontSize="16px"
               color="brand.sand"
+              _hover={{
+                color: "brand.sand",
+              }}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
                   displayPage();

@@ -81,7 +81,7 @@ function Supporters({ base, title }) {
       .select({
         sort: [
           { field: "Expertise", direction: "asc" },
-          { field: "Years of Marketing Experience", direction: "desc" },
+          { field: "Years of Marketing Experience", direction: "asc" },
         ],
         view: "Grid view",
       })
@@ -143,7 +143,7 @@ function Supporters({ base, title }) {
             onChange={handleExpertiseChange}
             placeholder="All areas of expertise"
             color="brand.blush"
-            mr={[0, 0, 3, 8, 8]}
+            mr={[0, 0, 3, 12, 12]}
             mb={[5, 5, 0, 0, 0]}
             borderColor="brand.blush"
           >
@@ -162,7 +162,7 @@ function Supporters({ base, title }) {
             onChange={handleExperienceChange}
             placeholder="All years of experience"
             color="brand.blush"
-            mr={[0, 0, 3, 8, 8]}
+            mr={[0, 0, 3, 12, 12]}
             mb={[5, 5, 0, 0, 0]}
             borderColor="brand.blush"
           >
