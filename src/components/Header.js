@@ -29,7 +29,6 @@ function Header({ type, logoSize }) {
       <Flex
         align="center"
         direction="column"
-        mb={6}
         mr={8}
         ml={8}
         pt={[40, 40, 60, 200, 200]}

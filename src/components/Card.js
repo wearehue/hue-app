@@ -30,6 +30,7 @@ function Card({ record, index, type }) {
       >
         {record.fields["Name"]}
       </Heading>
+
       <Flex align="start" mb={4}>
         <Text fontSize={["md", "md", "md", "md"]}>
           {record.fields["Short Bio"]}
@@ -112,6 +113,23 @@ function Card({ record, index, type }) {
           {record.fields["Where I've Worked"]}
         </Text>
       </Box>
+      {record.fields["Location"] && (
+        <>
+          <Text
+            size="sm"
+            mb={2}
+            mt={2}
+            color="brand.blush"
+            fontWeight={700}
+            textTransform="uppercase"
+          >
+            Location
+          </Text>
+          <Text fontSize={["md", "md", "md", "md"]} mb={4}>
+            {record.fields["Location"]}
+          </Text>
+        </>
+      )}
       <Flex align="center" mb={4}>
         <Icon
           as={FaLinkedinIn}

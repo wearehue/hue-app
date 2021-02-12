@@ -128,7 +128,7 @@ function Talent({ base, title }) {
   }, [experienceValue]);
 
   return (
-    <Box mt={10} mb={20} mr={[5, 5, 18, 20, 20]} ml={[5, 5, 18, 20, 20]}>
+    <Box mb={20} mr={[5, 5, 18, 20, 20]} ml={[5, 5, 18, 20, 20]}>
       <Flex wrap="wrap" justify="center">
         <Flex
           mt={10}
