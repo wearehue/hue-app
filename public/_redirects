@@ -1,4 +1,4 @@
-/*    /index.html   200
 # http and https need separate rules if you don’t force_ssl!
 http://members.wearehue.com/* https://www.members.wearehue.com/:splat 301!
 https://members.wearehue.com/* https://www.members.wearehue.com/:splat 301!
+/*    /index.html   200
