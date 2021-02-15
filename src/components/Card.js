@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Heading, Text, Icon, Link, Flex, Tag } from "@chakra-ui/react";
 import { FaLinkedinIn } from "react-icons/fa";
 
-function Card({ record, index, type }) {
+function Card({ record, type }) {
   return (
     <Box
       bg="brand.raisin"

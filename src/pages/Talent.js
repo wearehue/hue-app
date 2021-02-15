@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Box, Flex, Input, Select } from "@chakra-ui/react";
 import Card from "../components/Card";
 import { filterByExperience, filterByExpertise, search } from "../utils/filter";
+import { useLocation } from "react-router-dom";
+import ReactGA from "react-ga";
 
 function Talent({ base, title }) {
   const allRecords = [];
   const [records, setRecords] = useState([]);
   const [initialRecords, setInitialRecords] = useState([]);
+  const location = useLocation();
 
   const [expertiseValue, setExpertiseValue] = useState("");
   const [experienceValue, setExperienceValue] = useState("");
@@ -23,11 +26,21 @@ function Talent({ base, title }) {
   const handleExperienceChange = (event) => {
     setRecords(initialRecords);
     setExperienceValue(event.target.value);
+    ReactGA.event({
+      category: "Filtering",
+      action: event.target.value,
+      label: "Filter by experience",
+    });
   };
 
   const handleExpertiseChange = (event) => {
     setRecords(initialRecords);
     setExpertiseValue(event.target.value);
+    ReactGA.event({
+      category: "Filtering",
+      action: event.target.value,
+      label: "Filter by expertise",
+    });
   };
   let firstPage = null;
   const processPage = (nextRecords, fetchNextPage) => {
@@ -87,6 +100,9 @@ function Talent({ base, title }) {
       })
       .eachPage(processPage, processRecords);
     document.title = title || "";
+
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -146,6 +162,7 @@ function Talent({ base, title }) {
             mr={[0, 0, 3, 12, 12]}
             mb={[5, 5, 0, 0, 0]}
             borderColor="brand.blush"
+            aria-label="Filter by areas of expertise"
           >
             {expertiseOptions.map((expertise) => {
               return (
@@ -165,6 +182,7 @@ function Talent({ base, title }) {
             mr={[0, 0, 3, 12, 12]}
             mb={[5, 5, 0, 0, 0]}
             borderColor="brand.blush"
+            aria-label="Filter by years of expertise"
           >
             {experienceOptions.map((experience) => {
               return (
@@ -182,6 +200,7 @@ function Talent({ base, title }) {
             placeholder="Search"
             color="brand.blush"
             borderColor="brand.blush"
+            aria-label="Filter by areas of expertise"
           />
         </Flex>
         <Flex

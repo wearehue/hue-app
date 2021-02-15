@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../components/Nav";
-import { Input, Flex, Button, Text } from "@chakra-ui/react";
+import Nav from "./Nav";
+import { Input, Flex, Button, IconButton, Text } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 
 function Auth({ children }) {
@@ -37,6 +37,7 @@ function Auth({ children }) {
           <Flex justify="center" marginTop="10rem">
             <Input
               type="password"
+              aria-label="Password input field"
               value={value}
               onChange={handleChange}
               placeholder="Password"
@@ -56,7 +57,7 @@ function Auth({ children }) {
                 }
               }}
             />
-            <Button
+            <IconButton
               rightIcon={<FaArrowRight />}
               color="brand.sugar"
               variant="link"
@@ -64,7 +65,8 @@ function Auth({ children }) {
               borderRadius="0px"
               borderBottom="2px solid"
               onClick={displayPage}
-            ></Button>
+              aria-label="Submit password"
+            ></IconButton>
           </Flex>
           {error && (
             <Flex justify="center">

@@ -3,12 +3,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Talent from "./pages/Talent";
 import Supporters from "./pages/Supporters";
-import Auth from "./pages/Auth";
+import Auth from "./components/Auth";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Airtable from "airtable";
 import ReactGA from "react-ga";
-import { createBrowserHistory } from "history";
 const base = new Airtable({ apiKey: "keyaU6R8fXqJODoNZ" }).base(
   "appUwhzMAK167hdBg"
 );
@@ -17,15 +16,8 @@ function App() {
   const trackingId = "UA-172908475-1";
   ReactGA.initialize(trackingId);
 
-  const history = createBrowserHistory();
-
-  history.listen((location) => {
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname);
-  });
-
   return (
-    <Router history={history}>
+    <Router>
       <div className="App">
         <Switch>
           <Route path="/talent">

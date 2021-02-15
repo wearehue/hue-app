@@ -6,11 +6,13 @@
   font-family: "Montserrat";
   src: local("Montserrat"),
     url(./fonts/Montserrat-Regular.ttf) format("opentype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "zenon";
   src: local("zenon"), url(./fonts/CAST\ -\ Zenon\ Black.otf) format("opentype");
+  font-display: swap;
 }
 
 ul {
@@ -24,6 +26,6 @@ ul {
 @media (max-width: 320px) {
   .bm-menu {
     font-size: 1.7em !important;
-    padding: 5.7em 0.5em 0px !important;
+    padding: 3.7em 0.5em 0px !important;
   }
 }

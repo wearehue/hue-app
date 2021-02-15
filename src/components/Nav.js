@@ -1,5 +1,15 @@
 import React from "react";
-import { Flex, Link, Image } from "@chakra-ui/react";
+import {
+  Flex,
+  Link,
+  Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Button,
+} from "@chakra-ui/react";
 import MobileNav from "./MobileNav";
 import logo from "../images/tricolor-lighthue_logo_.png";
 
@@ -14,18 +24,76 @@ function Nav({ type, logoSize }) {
           color="brand.blush"
           fontSize={["sm", "sm", "sm", "lg"]}
           display={["none", "none", "flex", "flex"]}
+          align="center"
         >
+          <Menu>
+            {({ isOpen }) => (
+              <>
+                <MenuButton
+                  isActive={isOpen}
+                  as={Button}
+                  bg="brand.raisin"
+                  _hover={{
+                    backgroundColor: "brand.raisin",
+                  }}
+                  _active={{
+                    backgroundColor: "brand.raisin",
+                  }}
+                  fontWeight={400}
+                  fontSize={[
+                    "0.875rem",
+                    "0.875rem",
+                    "0.875rem",
+                    "1.125rem",
+                    "1.125rem",
+                  ]}
+                >
+                  The Hub
+                </MenuButton>
+                <MenuList bg="brand.raisin" borderColor="brand.blush">
+                  <MenuItem
+                    _hover={{
+                      backgroundColor: "brand.raisin",
+                    }}
+                    _focus={{
+                      backgroundColor: "brand.raisin",
+                    }}
+                  >
+                    <Link
+                      _hover={{
+                        textDecoration: "none",
+                      }}
+                      href="https://www.wearehue.org/stateofinequity"
+                      isExternal
+                    >
+                      State of Inequity
+                    </Link>
+                  </MenuItem>
+                  <MenuDivider color="brand.blush" />
+                  <MenuItem
+                    _hover={{
+                      backgroundColor: "brand.raisin",
+                    }}
+                    _focus={{
+                      backgroundColor: "brand.raisin",
+                    }}
+                  >
+                    <Link
+                      _hover={{
+                        textDecoration: "none",
+                      }}
+                      href="https://www.wearehue.org/hearmeseeme"
+                      isExternal
+                    >
+                      Hear Me, See Me
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </>
+            )}
+          </Menu>
           <Link
-            mr={6}
-            _hover={{
-              textDecoration: "none",
-            }}
-            href="http://wearehue.org/stateofinequity"
-            isExternal
-          >
-            The Hub
-          </Link>
-          <Link
+            ml={6}
             mr={6}
             _hover={{
               textDecoration: "none",

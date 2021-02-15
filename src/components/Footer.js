@@ -28,7 +28,11 @@ function Footer({ type }) {
         hello@wearehue.org
       </Link>
       <Flex m={3}>
-        <Link href="https://www.linkedin.com/company/huehq" isExternal>
+        <Link
+          href="https://www.linkedin.com/company/huehq"
+          isExternal
+          aria-label="Go to Hue linkedin page"
+        >
           <Icon
             as={FaLinkedinIn}
             color="white"
@@ -39,7 +43,11 @@ function Footer({ type }) {
             }}
           />
         </Link>
-        <Link href="https://twitter.com/we_are_hue" isExternal>
+        <Link
+          href="https://twitter.com/we_are_hue"
+          isExternal
+          aria-label="Go to Hue twitter page"
+        >
           <Icon
             as={FaTwitter}
             color="white"
@@ -50,7 +58,11 @@ function Footer({ type }) {
             }}
           />
         </Link>
-        <Link href="https://www.instagram.com/we.are.hue/" isExternal>
+        <Link
+          href="https://www.instagram.com/we.are.hue/"
+          isExternal
+          aria-label="Go to Hue instagram page"
+        >
           <Icon
             as={FaInstagram}
             color="white"
