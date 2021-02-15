@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Rotate as Hamburger } from "hamburger-react";
-import { Link, Flex, Text } from "@chakra-ui/react";
+import { Link, Flex } from "@chakra-ui/react";
 
 const styles = {
   bmBurgerButton: {
@@ -64,7 +64,7 @@ function MobileNav() {
         label="Show menu"
       />
       <Menu styles={styles} isOpen={menuIsOpen}>
-        <Text>The Hub</Text>
+        {/* <Text>The Hub</Text>
         <Link
           _hover={{
             textDecoration: "none",
@@ -86,7 +86,7 @@ function MobileNav() {
           fontSize="1.5rem"
         >
           Hear Me, See Me
-        </Link>
+        </Link> */}
         <Link href="https://www.wearehue.org/talent" isExternal>
           For Talent of Color
         </Link>

@@ -3,12 +3,12 @@ import {
   Flex,
   Link,
   Image,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  Button,
+  // Menu,
+  // MenuButton,
+  // MenuList,
+  // MenuItem,
+  // MenuDivider,
+  // Button,
 } from "@chakra-ui/react";
 import MobileNav from "./MobileNav";
 import logo from "../images/tricolor-lighthue_logo_.png";
@@ -26,7 +26,7 @@ function Nav({ type, logoSize }) {
           display={["none", "none", "flex", "flex"]}
           align="center"
         >
-          <Menu>
+          {/* <Menu>
             {({ isOpen }) => (
               <>
                 <MenuButton
@@ -91,7 +91,7 @@ function Nav({ type, logoSize }) {
                 </MenuList>
               </>
             )}
-          </Menu>
+          </Menu> */}
           <Link
             ml={6}
             mr={6}
