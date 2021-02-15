@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
-import { Input, Flex, Button, IconButton, Text } from "@chakra-ui/react";
+import { Input, Flex, IconButton, Text } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 
 function Auth({ children }) {
