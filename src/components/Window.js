@@ -1,3 +1,4 @@
+//look into this later for optimizing large lists
 import { FixedSizeList as List } from "react-window";
 
 function Row({ data, index }) {

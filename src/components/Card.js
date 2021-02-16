@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Text, Icon, Link, Flex, Tag } from "@chakra-ui/react";
+import { Box, Heading, Text, Link, Flex, Tag, Button } from "@chakra-ui/react";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Card({ record, type }) {
@@ -31,15 +31,14 @@ function Card({ record, type }) {
         {record.fields["Name"]}
       </Heading>
 
-      <Flex align="start" mb={4}>
+      <Flex align="start" mb=".5rem">
         <Text fontSize={["md", "md", "md", "md"]}>
           {record.fields["Short Bio"]}
         </Text>
       </Flex>
-      <Box mb={6}>
+      <Box>
         <Text
           size="sm"
-          mb={2}
           mt={2}
           color="brand.blush"
           fontWeight={700}
@@ -62,11 +61,11 @@ function Card({ record, type }) {
         })}
       </Box>
       {type === "Talent" ? (
-        <Flex mb={4}>
+        <Flex>
+          {/* remove mb*/}
           <Box>
             <Text
               size="sm"
-              mb={2}
               mt={2}
               color="brand.blush"
               fontWeight={700}
@@ -80,11 +79,10 @@ function Card({ record, type }) {
           </Box>
         </Flex>
       ) : (
-        <Flex mb={4}>
+        <Flex>
           <Box>
             <Text
               size="sm"
-              mb={2}
               mt={2}
               color="brand.blush"
               fontWeight={700}
@@ -98,10 +96,9 @@ function Card({ record, type }) {
           </Box>
         </Flex>
       )}
-      <Box mb={6}>
+      <Box>
         <Text
           size="sm"
-          mb={2}
           mt={2}
           color="brand.blush"
           fontWeight={700}
@@ -117,7 +114,6 @@ function Card({ record, type }) {
         <>
           <Text
             size="sm"
-            mb={2}
             mt={2}
             color="brand.blush"
             fontWeight={700}
@@ -130,31 +126,10 @@ function Card({ record, type }) {
           </Text>
         </>
       )}
-      <Flex align="center" mb={4}>
-        <Icon
-          as={FaLinkedinIn}
-          boxSize={6}
-          mr={4}
-          _hover={{
-            color: "brand.linkedin",
-          }}
-        />
-        <Link
-          href={record.fields["LinkedIn"]}
-          size="20px"
-          isExternal
-          _hover={{
-            textDecoration: "none",
-          }}
-        >
-          Connect on LinkedIn
-        </Link>
-      </Flex>
       {type === "Supporters" && record.fields["How I'd Like to Help"] && (
         <Box mb={6}>
           <Text
             size="sm"
-            mb={2}
             mt={2}
             color="brand.blush"
             fontWeight={700}
@@ -177,6 +152,31 @@ function Card({ record, type }) {
           })}
         </Box>
       )}
+      <Flex align="center" mt={4} mb={2}>
+        <Link
+          href={record.fields["LinkedIn"]}
+          isExternal
+          _hover={{
+            textDecoration: "none",
+          }}
+        >
+          <Button
+            leftIcon={<FaLinkedinIn />}
+            color="white"
+            variant="solid"
+            textTransform="uppercase"
+            fontWeight="bold"
+            bg="brand.sugar"
+            aria-label="Visit LinkedIn page"
+            _hover={{
+              backgroundColor: "brand.blush",
+              color: "brand.raisin",
+            }}
+          >
+            Connect on LinkedIn
+          </Button>
+        </Link>
+      </Flex>
     </Box>
   );
 }
