@@ -18,7 +18,7 @@ function Card({ record, type }) {
       borderColor="brand.blush"
       _hover={{
         borderWidth: ".125rem",
-        borderColor: "brand.rust",
+        borderColor: "brand.sugar",
       }}
     >
       <Heading
@@ -165,15 +165,15 @@ function Card({ record, type }) {
             color="white"
             variant="solid"
             textTransform="uppercase"
-            fontWeight="bold"
+            fontWeight="900"
             bg="brand.sugar"
             aria-label="Visit LinkedIn page"
             _hover={{
-              backgroundColor: "brand.blush",
-              color: "brand.raisin",
+              backgroundColor: "#84421E",
+              color: "white",
             }}
           >
-            Connect on LinkedIn
+            Connect
           </Button>
         </Link>
       </Flex>
