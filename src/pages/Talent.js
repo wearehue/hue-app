@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex, Input, Select } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Card from "../components/Card";
 import { filterByExperience, filterByExpertise, search } from "../utils/filter";
+import FilterBar from "../components/FilterBar";
 import { useLocation } from "react-router-dom";
 import ReactGA from "react-ga";
 
@@ -146,63 +147,16 @@ function Talent({ base, title }) {
   return (
     <Box mb={20} mr={[5, 5, 18, 20, 20]} ml={[5, 5, 18, 20, 20]}>
       <Flex wrap="wrap" justify="center">
-        <Flex
-          mt={10}
-          justify="space-between"
-          direction={["column", "column", "row", "row"]}
-          align={["center", "center", "normal", "normal"]}
-          width="100%"
-          mb={10}
-        >
-          <Select
-            value={expertiseValue}
-            onChange={handleExpertiseChange}
-            placeholder="All areas of expertise"
-            color="brand.blush"
-            mr={[0, 0, 3, 12, 12]}
-            mb={[5, 5, 0, 0, 0]}
-            borderColor="brand.blush"
-            aria-label="Filter by areas of expertise"
-          >
-            {expertiseOptions.map((expertise) => {
-              return (
-                <>
-                  <option value={expertise} key={expertise}>
-                    {expertise}
-                  </option>
-                </>
-              );
-            })}
-          </Select>
-          <Select
-            value={experienceValue}
-            onChange={handleExperienceChange}
-            placeholder="All years of experience"
-            color="brand.blush"
-            mr={[0, 0, 3, 12, 12]}
-            mb={[5, 5, 0, 0, 0]}
-            borderColor="brand.blush"
-            aria-label="Filter by years of expertise"
-          >
-            {experienceOptions.map((experience) => {
-              return (
-                <>
-                  <option value={experience} key={experience}>
-                    {experience}
-                  </option>
-                </>
-              );
-            })}
-          </Select>
-          <Input
-            value={searchValue}
-            onChange={handleSearchChange}
-            placeholder="Search"
-            color="brand.blush"
-            borderColor="brand.blush"
-            aria-label="Filter by areas of expertise"
-          />
-        </Flex>
+        <FilterBar
+          expertiseValue={expertiseValue}
+          handleExpertiseChange={handleExpertiseChange}
+          expertiseOptions={expertiseOptions}
+          experienceValue={experienceValue}
+          handleExperienceChange={handleExperienceChange}
+          experienceOptions={experienceOptions}
+          searchValue={searchValue}
+          handleSearchChange={handleSearchChange}
+        />
         <Flex
           flexWrap="wrap"
           justify="space-between"
