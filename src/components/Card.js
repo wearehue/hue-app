@@ -167,6 +167,7 @@ function Card({ record, type }) {
             textTransform="uppercase"
             fontWeight="900"
             bg="brand.sugar"
+            borderRadius="300px"
             aria-label="Visit LinkedIn page"
             _hover={{
               backgroundColor: "#84421E",
