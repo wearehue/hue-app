@@ -1,10 +1,12 @@
 import React from "react";
 import Nav from "./Nav";
-import { Link as ReactLink } from "react-router-dom";
 import { Box, Heading, Text, Flex, Link } from "@chakra-ui/react";
 
 function Header({ type, logoSize }) {
-  const linkPath = type === "talent" ? "/supporters" : "/talent";
+  const linkPath =
+    type === "talent"
+      ? "https://www.wearehue.org/supportergallery"
+      : "https://www.wearehue.org/talentgallery";
   const linkText =
     type === "talent"
       ? "View the supporter gallery"
@@ -62,20 +64,20 @@ function Header({ type, logoSize }) {
         </Text>
         <Flex direction={["column", "column", "row", "row", "row"]}>
           <Link
-            as={ReactLink}
-            to={linkPath}
+            href={linkPath}
             color="brand.ginger"
             textDecoration="underline"
+            isExternal
             mr={4}
             mb={2}
           >
             {linkText}
           </Link>
           <Link
-            as={ReactLink}
-            to="https://www.wearehue.org/jobs"
             color="brand.ginger"
             textDecoration="underline"
+            href="https://www.wearehue.org/jobs"
+            isExternal
           >
             View jobs
           </Link>
