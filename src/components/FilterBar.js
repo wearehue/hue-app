@@ -56,7 +56,7 @@ function FilterBar(props) {
         aria-label="Filter by years of expertise"
       >
         <option value="" style={{ color: "black" }}>
-          All areas of experience
+          All experience levels
         </option>
         {experienceOptions.map((experience) => {
           return (

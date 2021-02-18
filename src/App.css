@@ -29,3 +29,8 @@ ul {
     padding: 3.7em 0.5em 0px !important;
   }
 }
+
+input:focus {
+  border-color: #a64616 !important;
+  box-shadow: 0 0 0 1px #a64616 !important;
+}
