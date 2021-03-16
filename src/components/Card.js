@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Heading, Text, Link, Flex, Tag, Button } from "@chakra-ui/react";
 import { FaLinkedinIn } from "react-icons/fa";
 
-function Card({ record, type }) {
+function Card({ row, type }) {
   return (
     <Box
       bg="brand.raisin"
@@ -13,7 +13,7 @@ function Card({ record, type }) {
       mb={10}
       mr="1rem"
       color="brand.blush"
-      key={record.id}
+      key={row.id}
       borderWidth=".125rem"
       borderColor="brand.blush"
       _hover={{
@@ -28,12 +28,12 @@ function Card({ record, type }) {
         color="brand.melon"
         textTransform="lowercase"
       >
-        {record.fields["Name"]}
+        {row.values["fields.Name"]}
       </Heading>
 
       <Flex align="start" mb=".5rem">
         <Text fontSize={["md", "md", "md", "md"]}>
-          {record.fields["Short Bio"]}
+          {row.values["fields.Short Bio"]}
         </Text>
       </Flex>
       <Box>
@@ -46,7 +46,7 @@ function Card({ record, type }) {
         >
           Expertise
         </Text>
-        {record.fields["Expertise"].map((expertise) => {
+        {row.values["fields.Expertise"].map((expertise) => {
           return (
             <Tag
               size="sm"
@@ -60,9 +60,8 @@ function Card({ record, type }) {
           );
         })}
       </Box>
-      {type === "Talent" ? (
+      {type === "talent" ? (
         <Flex>
-          {/* remove mb*/}
           <Box>
             <Text
               size="sm"
@@ -74,7 +73,7 @@ function Card({ record, type }) {
               Years of Experience
             </Text>
             <Text fontSize={["md", "md", "md", "md"]}>
-              {record.fields["Years of Experience"]}
+              {row.values["fields.Years of Experience"]}
             </Text>
           </Box>
         </Flex>
@@ -91,7 +90,7 @@ function Card({ record, type }) {
               Years of Marketing Experience
             </Text>
             <Text fontSize={["md", "md", "md", "md"]}>
-              {record.fields["Years of Marketing Experience"]}
+              {row.values["fields.Years of Marketing Experience"]}
             </Text>
           </Box>
         </Flex>
@@ -107,10 +106,10 @@ function Card({ record, type }) {
           Where I've Worked
         </Text>
         <Text fontSize={["md", "md", "md", "md"]}>
-          {record.fields["Where I've Worked"]}
+          {row.values["fields.Where I've Worked"]}
         </Text>
       </Box>
-      {record.fields["Location"] && (
+      {row.values["fields.Location"] && (
         <>
           <Text
             size="sm"
@@ -122,11 +121,11 @@ function Card({ record, type }) {
             Location
           </Text>
           <Text fontSize={["md", "md", "md", "md"]} mb={4}>
-            {record.fields["Location"]}
+            {row.values["fields.Location"]}
           </Text>
         </>
       )}
-      {type === "Supporters" && record.fields["How I'd Like to Help"] && (
+      {type === "supporters" && row.values["fields.How I'd Like to Help"] && (
         <Box mb={6}>
           <Text
             size="sm"
@@ -137,7 +136,7 @@ function Card({ record, type }) {
           >
             How I'd Like to Help
           </Text>
-          {record.fields["How I'd Like to Help"].map((help) => {
+          {row.values["fields.How I'd Like to Help"].map((help) => {
             return (
               <Tag
                 size="sm"
@@ -154,7 +153,7 @@ function Card({ record, type }) {
       )}
       <Flex align="center" mt={4} mb={2}>
         <Link
-          href={record.fields["LinkedIn"]}
+          href={row.values["fields.LinkedIn"]}
           isExternal
           _hover={{
             textDecoration: "none",

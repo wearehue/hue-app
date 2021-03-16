@@ -1,48 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import Card from "../components/Card";
-import { filterByExperience, filterByExpertise, search } from "../utils/filter";
-import FilterBar from "../components/FilterBar";
+import { Box, Flex, Select } from "@chakra-ui/react";
+import DataTable from "../components/DataTable";
 import { useLocation } from "react-router-dom";
 import ReactGA from "react-ga";
 
 function Supporters({ base, title }) {
   const allRecords = [];
   const [records, setRecords] = useState([]);
-  const [initialRecords, setInitialRecords] = useState([]);
   const location = useLocation();
 
-  const [expertiseValue, setExpertiseValue] = useState("");
-  const [experienceValue, setExperienceValue] = useState("");
-  const [searchValue, setSearchValue] = useState("");
-
-  const [experienceOptions, setExperienceOptions] = useState([]);
-  const [expertiseOptions, setExpertiseOptions] = useState([]);
-
-  const handleSearchChange = (event) => {
-    setRecords(initialRecords);
-    setSearchValue(event.target.value);
-  };
-
-  const handleExperienceChange = (event) => {
-    setRecords(initialRecords);
-    setExperienceValue(event.target.value);
-    ReactGA.event({
-      category: "Filtering",
-      action: event.target.value,
-      label: "Filter by experience",
-    });
-  };
-
-  const handleExpertiseChange = (event) => {
-    setRecords(initialRecords);
-    setExpertiseValue(event.target.value);
-    ReactGA.event({
-      category: "Filtering",
-      action: event.target.value,
-      label: "Filter by expertise",
-    });
-  };
   let firstPage = null;
   const processPage = (nextRecords, fetchNextPage) => {
     allRecords.push(...nextRecords);
@@ -56,39 +22,7 @@ function Supporters({ base, title }) {
       console.error(err);
       return;
     }
-
-    setInitialRecords(allRecords);
     setRecords(allRecords);
-
-    const expertiseSet = new Set();
-    allRecords.forEach((record) => {
-      record.fields["Expertise"].forEach((expertise) => {
-        expertiseSet.add(expertise);
-      });
-    });
-    setExpertiseOptions(Array.from(expertiseSet));
-
-    const experienceSet = new Set();
-    allRecords.forEach((record) => {
-      record.fields["Years of Marketing Experience"].forEach((experience) => {
-        experienceSet.add(experience);
-      });
-    });
-    // eslint-disable-next-line array-callback-return
-    const experienceArray = Array.from(experienceSet).sort((a, b) => {
-      if (a.length < 6 && b.length < 6) {
-        const numA = Number.parseInt(a);
-        const numB = Number.parseInt(b);
-        return numB - numA;
-      }
-      if (a.length > 6) {
-        return 1;
-      }
-      if (b.length > 6) {
-        return -1;
-      }
-    });
-    setExperienceOptions(experienceArray);
   };
   useEffect(() => {
     base("Support POC Supporter Gallery: Live")
@@ -107,69 +41,119 @@ function Supporters({ base, title }) {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const filteredRecords = search(
-      "supporters",
-      records,
-      expertiseValue,
-      searchValue,
-      experienceValue
-    );
-    setRecords(filteredRecords);
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue]);
+  function SelectColumnFilter({
+    column: { filterValue, setFilter, preFilteredRows, id },
+  }) {
+    const displayId = id.slice(7);
 
-  useEffect(() => {
-    const filteredRecords = filterByExpertise(
-      "supporters",
-      records,
-      expertiseValue,
-      searchValue,
-      experienceValue
-    );
+    const options = React.useMemo(() => {
+      const options = new Set();
+      preFilteredRows.forEach((row) => {
+        row.values[id].forEach((option) => options.add(option));
+      });
+      const optionsArr = [...options.values()];
+      if (displayId === "Years of Marketing Experience") {
+        return optionsArr.sort((a, b) => {
+          let returnVal = null;
+          if (a.length < 6 && b.length < 6) {
+            const numA = Number.parseInt(a);
+            const numB = Number.parseInt(b);
+            returnVal = numB - numA;
+          }
+          if (a.length > 6) {
+            returnVal = 1;
+          }
+          if (b.length > 6) {
+            returnVal = -1;
+          }
+          return returnVal;
+        });
+      } else {
+        return optionsArr.sort((a, b) => a.localeCompare(b));
+      }
+    }, [id, preFilteredRows, displayId]);
 
-    setRecords(filteredRecords);
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expertiseValue]);
-
-  useEffect(() => {
-    const filteredRecords = filterByExperience(
-      "supporters",
-      records,
-      expertiseValue,
-      searchValue,
-      experienceValue
+    return (
+      <Select
+        value={filterValue}
+        onChange={(e) => {
+          setFilter(e.target.value || undefined);
+          ReactGA.event({
+            category: "Filtering",
+            action: e.target.value,
+            label: `Filter by ${displayId}`,
+          });
+        }}
+        color="brand.blush"
+        mr={[0, 0, 3, 12, 12]}
+        mb={[5, 5, 0, 0, 0]}
+        borderColor="brand.blush"
+        aria-label={`Filter by ${displayId}`}
+      >
+        <option value="" style={{ color: "black" }}>
+          {displayId === "Expertise"
+            ? `All Areas of ${displayId}`
+            : `All ${displayId}`}
+        </option>
+        {options.map((option, i) => (
+          <option key={i} value={option} style={{ color: "black" }}>
+            {option}
+          </option>
+        ))}
+      </Select>
     );
-    setRecords(filteredRecords);
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [experienceValue]);
+  }
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Record",
+        accessor: "fields",
+        columns: [
+          {
+            Header: "Name",
+            accessor: "fields.Name",
+          },
+          {
+            Header: "Expertise",
+            accessor: "fields.Expertise",
+            Filter: SelectColumnFilter,
+          },
+          {
+            Header: "Short Bio",
+            accessor: "fields.Short Bio",
+          },
+          {
+            Header: "Years of Experience",
+            accessor: "fields.Years of Marketing Experience",
+            Filter: SelectColumnFilter,
+          },
+          {
+            Header: "Where I've Worked",
+            accessor: "fields.Where I've Worked",
+          },
+          {
+            Header: "Location",
+            accessor: "fields.Location",
+          },
+          {
+            Header: "LinkedIn",
+            accessor: "fields.LinkedIn",
+          },
+          {
+            Header: "How I'd Like to Help",
+            accessor: "fields.How I'd Like to Help",
+          },
+        ],
+      },
+    ],
+    []
+  );
 
   return (
     <Box mb={20} mr={[5, 5, 18, 20, 20]} ml={[5, 5, 18, 20, 20]}>
       <Flex wrap="wrap" justify="center">
-        <FilterBar
-          expertiseValue={expertiseValue}
-          handleExpertiseChange={handleExpertiseChange}
-          expertiseOptions={expertiseOptions}
-          experienceValue={experienceValue}
-          handleExperienceChange={handleExperienceChange}
-          experienceOptions={experienceOptions}
-          searchValue={searchValue}
-          handleSearchChange={handleSearchChange}
-        />
-        <Flex
-          flexWrap="wrap"
-          justify="space-between"
-          width="100%"
-          alignContent="space-between"
-          height="600px"
-          overflowY="scroll"
-        >
-          {records &&
-            records.map((record) => {
-              return <Card record={record} type="Supporters" />;
-            })}
-        </Flex>
+        <DataTable columns={columns} data={records} type="supporters" />
       </Flex>
     </Box>
   );
