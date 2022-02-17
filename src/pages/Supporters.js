@@ -49,7 +49,7 @@ function Supporters({ base, title }) {
     const options = React.useMemo(() => {
       const options = new Set();
       preFilteredRows.forEach((row) => {
-        row.values[id].forEach((option) => options.add(option));
+        row.values[id]?.forEach((option) => options.add(option));
       });
       const optionsArr = [...options.values()];
       if (displayId === "Years of Marketing Experience") {
